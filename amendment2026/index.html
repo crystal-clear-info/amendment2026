@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CRYSTAL CLEAR: What happens after Trans Act Amendment 2026c</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header>
+  <h1>CRYSTAL CLEAR: What happens after Trans Act Amendment 2026c</h1>
+  <p>Brief introduction to the bill (now act). To learn more, <a href='https://www.google.com/'>[insert resource].</a> This guide is for people who have basic information about the bill but not sure what will come next.</p>
+</header>
+
+<div class="container">
+
+  <!-- FILTER (DYNAMIC) -->
+
+  <div class="filter">
+    
+      <label>
+        <input type="checkbox" value="confirmed" checked> Confirmed
+      </label>
+    
+      <label>
+        <input type="checkbox" value="likely" checked> Likely but unconfirmed
+      </label>
+    
+      <label>
+        <input type="checkbox" value="unlikely" checked> Unlikely but unconfirmed
+      </label>
+    
+      <label>
+        <input type="checkbox" value="false" checked> False
+      </label>
+    
+  </div>
+<!--random comment aise hi yippeeeeeeeeeeeeeee meow-->
+
+
+<!-- CATEGORY BUTTONS -->
+<div class="category-buttons">
+  
+  
+    <button class="cat-btn" data-category="Social">Social</button>
+  
+    <button class="cat-btn" data-category="Medical">Medical</button>
+  
+    <button class="cat-btn" data-category="Legal">Legal</button>
+  
+</div>
+
+<!-- QUESTIONS -->
+
+  <div class="faq-item" data-category="Medical">
+    <div class="question">Can X happen?</div>
+    <div class="answer">
+      <div class="part" data-certainty="confirmed">
+Part of the answer which is confirmed
+</div>
+<div class="part" data-certainty="unlikely">
+Unlikely part of the answer. also yes this is quite ugly as of now, but this is just to start us off.
+</div>
+    </div>
+  </div>
+
+  <div class="faq-item" data-category="Legal">
+    <div class="question">Can Y happen?</div>
+    <div class="answer">
+      <div class="part" data-certainty="confirmed">
+Confirmed that we need the design team on this! 
+(again, this is just to start us off for now. promise i'll get it looking nice & such ASAP)
+</div>
+<div class="part" data-certainty="likely">
+Likely but unconfirmed part of the answer
+This will be a different part of the answer. For the same question.
+Also, folks please do remind me what different parts of the site we've got going on
+</div>
+    </div>
+  </div>
+
+
+
+
+  <!-- EMBED / FEEDBACK -->
+  <div class="embed">
+    <!-- Put form/embed here -->
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact">
+    crystal.clear.trans.info@gmail.com
+  </div>
+
+</div>
+
+ <!--   2  <-- had used it to see how many Qs are there   -->  
+
+<footer>
+  <!-- Footer -->
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  // Accordion toggle
+  document.querySelectorAll('.question').forEach(q => {
+    q.addEventListener('click', () => {
+      const ans = q.nextElementSibling;
+      ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
+    });
+  });
+
+  // Filter logic
+  const checkboxes = document.querySelectorAll('.filter input');
+
+  function applyFilter() {
+    const active = Array.from(checkboxes)
+      .filter(cb => cb.checked)
+      .map(cb => cb.value);
+
+    document.querySelectorAll('.part').forEach(p => {
+      p.style.display = active.includes(p.dataset.certainty) ? 'block' : 'none';
+    });
+
+    
+  }
+
+  checkboxes.forEach(cb => cb.addEventListener('change', applyFilter));
+
+  // CATEGORY FILTERING
+  const buttons = document.querySelectorAll('.cat-btn');
+  const items = document.querySelectorAll('.faq-item');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+
+      const selected = btn.dataset.category;
+
+      // highlight active button
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // show/hide questions
+      items.forEach(item => {
+        if (item.dataset.category === selected) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+    });
+  });
+
+  // DEFAULT: click first button automatically
+  if (buttons.length > 0) {
+    buttons[0].click();
+  }
+
+});
+</script>
+
+</body>
+</html>
